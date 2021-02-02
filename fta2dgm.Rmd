@@ -93,6 +93,9 @@ pc.plot1 <- plot(pca,
 shapeHulls(pc.plot1, 
            groups = mark,
            group.cols = col.hull)
+
+# print pca with warp grids at max/min X and max/min Y
+knitr::include_graphics('./figures/pca.warp.jpg')
 ```
 
 ## Test hypothesis

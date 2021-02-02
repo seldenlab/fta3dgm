@@ -34,7 +34,7 @@ csz.mark <- ggplot(qdata, aes(x = mark, y = csz, color = mark)) +
   geom_dotplot(binaxis = 'y', stackdir = 'center', dotsize = 0.3) +
   scale_colour_manual(values = wes_palette("Moonrise2")) +
   theme(legend.position = "none") +
-  labs(x = 'Cask', y = 'Centroid Size')
+  labs(x = 'Mark', y = 'Centroid Size')
 # render plot
 csz.mark
 
@@ -67,6 +67,8 @@ pc.plot1 <- plot(pca,
 shapeHulls(pc.plot1, 
            groups = mark,
            group.cols = col.hull)
+
+picknplot.shape(pc.plot1)
 
 ## size as a function of mark ----
 fit.size.mark <- procD.lm(size ~ mark, 

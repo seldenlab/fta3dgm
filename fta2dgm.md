@@ -166,6 +166,13 @@ shapeHulls(pc.plot1,
 
 <img src="fta2dgm_files/figure-gfm/pca-1.png" width="100%" />
 
+``` r
+# print pca with warp grids at max/min X and max/min Y
+knitr::include_graphics('./figures/pca.warp.jpg')
+```
+
+<img src="./figures/pca.warp.jpg" width="100%" />
+
 ## Test hypothesis
 
 *Hypothesis: There are morphological differences in French trade axes

@@ -1,13 +1,14 @@
-Supplementary materials for paper: French trade axe morphology differs
-by makers’ mark: A preliminary analysis
+Supplementary materials for paper: French trade axes from the La Belle
+shipwreck demonstrate significant morphological differences by makers’
+mark
 ================
 Robert Z. Selden, Jr.
-02 February, 2021
+19 February, 2021
 
 ## Load packages
 
 ``` r
-# devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
+#devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
 library(here)
 ```
 
@@ -41,12 +42,12 @@ library(tidyverse)
 library(wesanderson)
 ```
 
-## Generalized Procrustes Analysis
+## Generalised Procrustes Analysis
 
 Landmark data were aligned to a global coordinate system (Kendall 1981,
-1984; Slice 2001), achieved through generalized Procrustes
-superimposition (Rohlf and Slice 1990) performed in R 4.0.2 (R Core
-Development Team, 2020) using the `geomorph` library v. 3.3.1 (Adams et
+1984; Slice 2001), achieved through generalised Procrustes
+superimposition (Rohlf and Slice 1990) performed in R 4.0.4 (R Core
+Development Team, 2020) using the `geomorph` library v. 3.3.2 (Adams et
 al. 2017; Adams and Otárola-Castillo 2013). Procrustes superimposition
 translates, scales, and rotates the coordinate data to allow for
 comparisons among objects (Gower 1975; Rohlf and Slice 1990). The
@@ -175,17 +176,17 @@ knitr::include_graphics('./figures/pca.warp.jpg')
 
 ## Test hypothesis
 
-*Hypothesis: There are morphological differences in French trade axes
-that bear an asterisk or DG makers’ marks.*
+*Hypothesis: There are morphological differences between French trade
+axes that bear an asterisk or DG makers’ marks.*
 
 ``` r
-## size as a function of mark ----
+# size as a function of mark ----
 fit.size.mark <- procD.lm(size ~ mark, 
                           data = gdf, 
                           print.progress = FALSE, 
                           iter = 9999)
 
-# differences in size by mark?
+## differences in size by mark?
 anova(fit.size.mark)
 ```
 
@@ -207,7 +208,7 @@ anova(fit.size.mark)
     ## Call: procD.lm(f1 = size ~ mark, iter = 9999, data = gdf, print.progress = FALSE)
 
 ``` r
-## shape as a function of mark ----
+# shape as a function of mark ----
 fit.shape.mark <- procD.lm(shape ~ mark, 
                            data = gdf, 
                            print.progress = FALSE, 
@@ -234,6 +235,44 @@ anova(fit.shape.mark)
     ## 
     ## Call: procD.lm(f1 = shape ~ mark, iter = 9999, data = gdf, print.progress = FALSE)
 
+### Morphological disparity
+
+``` r
+# does one of the groups display greater shape variation among individuals 
+# relative to the other group?
+morphol.disparity(shape ~ mark, 
+                  groups = qdata$mark, 
+                  data = gdf, 
+                  print.progress = FALSE, 
+                  iter = 9999)
+```
+
+    ## 
+    ## Call:
+    ## morphol.disparity(f1 = shape ~ mark, groups = qdata$mark, iter = 9999,  
+    ##     data = gdf, print.progress = FALSE) 
+    ## 
+    ## 
+    ## 
+    ## Randomized Residual Permutation Procedure Used
+    ## 10000 Permutations
+    ## 
+    ## Procrustes variances for defined groups
+    ##     asterisk           DG 
+    ## 0.0007308991 0.0019748264 
+    ## 
+    ## 
+    ## Pairwise absolute differences between variances
+    ##             asterisk          DG
+    ## asterisk 0.000000000 0.001243927
+    ## DG       0.001243927 0.000000000
+    ## 
+    ## 
+    ## P-Values
+    ##          asterisk     DG
+    ## asterisk   1.0000 0.0242
+    ## DG         0.0242 1.0000
+
 ### Mean shapes
 
 ``` r
@@ -250,26 +289,168 @@ names(new.coords)
 mean <- lapply(new.coords, mshape)
 
 # plot mean shapes
-plot(mean$asterisk) # mean shape of axe with asterisk mark
+plot(mean$asterisk) # mean shape for axes with asterisk mark
 ```
 
 <img src="fta2dgm_files/figure-gfm/def.mod.2-1.png" width="100%" />
 
 ``` r
-plot(mean$DG) # mean shape of axe with DG mark
+plot(mean$DG) # mean shape for axes with DG mark
 ```
 
 <img src="fta2dgm_files/figure-gfm/def.mod.2-2.png" width="100%" />
 
 ``` r
-# comparison plot of asterisk (gray) vs DG (linear vector)
+# comparison plot of French trade axes bearing asterisk (gray) 
+# and DG (black) marks
 plotRefToTarget(mean$asterisk, 
                 mean$DG, 
-                method = "vector",
+                method = "point",
                 mag = 2)
 ```
 
 <img src="fta2dgm_files/figure-gfm/def.mod.2-3.png" width="100%" />
+
+### Colophon
+
+This version of the analysis was generated on 2021-02-19 02:49:16 using
+the following computational environment and dependencies:
+
+``` r
+# what R packages and versions were used?
+if ("devtools" %in% installed.packages()) devtools::session_info()
+```
+
+    ## - Session info ---------------------------------------------------------------
+    ##  setting  value                       
+    ##  version  R version 4.0.4 (2021-02-15)
+    ##  os       Windows 10 x64              
+    ##  system   x86_64, mingw32             
+    ##  ui       RTerm                       
+    ##  language (EN)                        
+    ##  collate  English_United States.1252  
+    ##  ctype    English_United States.1252  
+    ##  tz       America/Chicago             
+    ##  date     2021-02-19                  
+    ## 
+    ## - Packages -------------------------------------------------------------------
+    ##  package          * version  date       lib source                             
+    ##  ape                5.4-1    2020-08-13 [1] CRAN (R 4.0.2)                     
+    ##  assertthat         0.2.1    2019-03-21 [1] CRAN (R 4.0.2)                     
+    ##  backports          1.2.1    2020-12-09 [1] CRAN (R 4.0.3)                     
+    ##  bezier             1.1.2    2018-12-14 [1] CRAN (R 4.0.3)                     
+    ##  brew               1.0-6    2011-04-13 [1] CRAN (R 4.0.0)                     
+    ##  broom              0.7.4    2021-01-29 [1] CRAN (R 4.0.3)                     
+    ##  cachem             1.0.3    2021-02-04 [1] CRAN (R 4.0.3)                     
+    ##  callr              3.5.1    2020-10-13 [1] CRAN (R 4.0.3)                     
+    ##  cellranger         1.1.0    2016-07-27 [1] CRAN (R 4.0.2)                     
+    ##  cli                2.3.0    2021-01-31 [1] CRAN (R 4.0.3)                     
+    ##  colorspace         2.0-0    2020-11-11 [1] CRAN (R 4.0.3)                     
+    ##  crayon             1.4.1    2021-02-08 [1] CRAN (R 4.0.3)                     
+    ##  crosstalk          1.1.1    2021-01-12 [1] CRAN (R 4.0.3)                     
+    ##  DBI                1.1.1    2021-01-15 [1] CRAN (R 4.0.3)                     
+    ##  dbplyr             2.1.0    2021-02-03 [1] CRAN (R 4.0.3)                     
+    ##  desc               1.2.0    2018-05-01 [1] CRAN (R 4.0.2)                     
+    ##  devtools           2.3.2    2020-09-18 [1] CRAN (R 4.0.2)                     
+    ##  digest             0.6.27   2020-10-24 [1] CRAN (R 4.0.3)                     
+    ##  dplyr            * 1.0.4    2021-02-02 [1] CRAN (R 4.0.3)                     
+    ##  ellipsis           0.3.1    2020-05-15 [1] CRAN (R 4.0.2)                     
+    ##  evaluate           0.14     2019-05-28 [1] CRAN (R 4.0.2)                     
+    ##  farver             2.0.3    2020-01-16 [1] CRAN (R 4.0.2)                     
+    ##  fastmap            1.1.0    2021-01-25 [1] CRAN (R 4.0.3)                     
+    ##  forcats          * 0.5.1    2021-01-27 [1] CRAN (R 4.0.3)                     
+    ##  fs                 1.5.0    2020-07-31 [1] CRAN (R 4.0.2)                     
+    ##  generics           0.1.0    2020-10-31 [1] CRAN (R 4.0.3)                     
+    ##  geomorph         * 3.3.2    2021-01-23 [1] Github (geomorphR/geomorph@788ab5b)
+    ##  ggplot2          * 3.3.3    2020-12-30 [1] CRAN (R 4.0.3)                     
+    ##  glue               1.4.2    2020-08-27 [1] CRAN (R 4.0.2)                     
+    ##  gtable             0.3.0    2019-03-25 [1] CRAN (R 4.0.2)                     
+    ##  haven              2.3.1    2020-06-01 [1] CRAN (R 4.0.2)                     
+    ##  here             * 1.0.1    2020-12-13 [1] CRAN (R 4.0.3)                     
+    ##  highr              0.8      2019-03-20 [1] CRAN (R 4.0.2)                     
+    ##  hms                1.0.0    2021-01-13 [1] CRAN (R 4.0.3)                     
+    ##  htmltools          0.5.1.1  2021-01-22 [1] CRAN (R 4.0.3)                     
+    ##  htmlwidgets        1.5.3    2020-12-10 [1] CRAN (R 4.0.3)                     
+    ##  httpuv             1.5.5    2021-01-13 [1] CRAN (R 4.0.3)                     
+    ##  httr               1.4.2    2020-07-20 [1] CRAN (R 4.0.2)                     
+    ##  jpeg               0.1-8.1  2019-10-24 [1] CRAN (R 4.0.0)                     
+    ##  jsonlite           1.7.2    2020-12-09 [1] CRAN (R 4.0.3)                     
+    ##  knitr              1.31     2021-01-27 [1] CRAN (R 4.0.3)                     
+    ##  labeling           0.4.2    2020-10-20 [1] CRAN (R 4.0.3)                     
+    ##  later              1.1.0.1  2020-06-05 [1] CRAN (R 4.0.2)                     
+    ##  lattice            0.20-41  2020-04-02 [2] CRAN (R 4.0.4)                     
+    ##  lifecycle          1.0.0    2021-02-15 [1] CRAN (R 4.0.4)                     
+    ##  lubridate          1.7.9.2  2020-11-13 [1] CRAN (R 4.0.3)                     
+    ##  magrittr           2.0.1    2020-11-17 [1] CRAN (R 4.0.3)                     
+    ##  manipulateWidget   0.10.1   2020-02-24 [1] CRAN (R 4.0.2)                     
+    ##  MASS               7.3-53.1 2021-02-12 [1] CRAN (R 4.0.4)                     
+    ##  memoise            2.0.0    2021-01-26 [1] CRAN (R 4.0.3)                     
+    ##  mime               0.10     2021-02-13 [1] CRAN (R 4.0.4)                     
+    ##  miniUI             0.1.1.1  2018-05-18 [1] CRAN (R 4.0.2)                     
+    ##  modelr             0.1.8    2020-05-19 [1] CRAN (R 4.0.2)                     
+    ##  munsell            0.5.0    2018-06-12 [1] CRAN (R 4.0.2)                     
+    ##  nlme               3.1-152  2021-02-04 [2] CRAN (R 4.0.4)                     
+    ##  pillar             1.4.7    2020-11-20 [1] CRAN (R 4.0.3)                     
+    ##  pkgbuild           1.2.0    2020-12-15 [1] CRAN (R 4.0.3)                     
+    ##  pkgconfig          2.0.3    2019-09-22 [1] CRAN (R 4.0.2)                     
+    ##  pkgload            1.1.0    2020-05-29 [1] CRAN (R 4.0.2)                     
+    ##  png                0.1-7    2013-12-03 [1] CRAN (R 4.0.0)                     
+    ##  prettyunits        1.1.1    2020-01-24 [1] CRAN (R 4.0.2)                     
+    ##  processx           3.4.5    2020-11-30 [1] CRAN (R 4.0.3)                     
+    ##  promises           1.2.0.1  2021-02-11 [1] CRAN (R 4.0.3)                     
+    ##  ps                 1.5.0    2020-12-05 [1] CRAN (R 4.0.3)                     
+    ##  purrr            * 0.3.4    2020-04-17 [1] CRAN (R 4.0.2)                     
+    ##  R6                 2.5.0    2020-10-28 [1] CRAN (R 4.0.3)                     
+    ##  Rcpp               1.0.6    2021-01-15 [1] CRAN (R 4.0.3)                     
+    ##  readr            * 1.4.0    2020-10-05 [1] CRAN (R 4.0.3)                     
+    ##  readxl             1.3.1    2019-03-13 [1] CRAN (R 4.0.2)                     
+    ##  remotes            2.2.0    2020-07-21 [1] CRAN (R 4.0.2)                     
+    ##  reprex             1.0.0    2021-01-27 [1] CRAN (R 4.0.3)                     
+    ##  rgl              * 0.105.13 2021-02-15 [1] CRAN (R 4.0.4)                     
+    ##  rjson              0.2.20   2018-06-08 [1] CRAN (R 4.0.0)                     
+    ##  rlang              0.4.10   2020-12-30 [1] CRAN (R 4.0.3)                     
+    ##  rmarkdown          2.7      2021-02-19 [1] CRAN (R 4.0.4)                     
+    ##  Rook               1.1-1    2014-10-20 [1] CRAN (R 4.0.3)                     
+    ##  rprojroot          2.0.2    2020-11-15 [1] CRAN (R 4.0.3)                     
+    ##  RRPP             * 0.6.2    2021-01-11 [1] CRAN (R 4.0.3)                     
+    ##  rstudioapi         0.13     2020-11-12 [1] CRAN (R 4.0.3)                     
+    ##  rvest              0.3.6    2020-07-25 [1] CRAN (R 4.0.2)                     
+    ##  scales             1.1.1    2020-05-11 [1] CRAN (R 4.0.2)                     
+    ##  sessioninfo        1.1.1    2018-11-05 [1] CRAN (R 4.0.2)                     
+    ##  shiny              1.6.0    2021-01-25 [1] CRAN (R 4.0.3)                     
+    ##  StereoMorph      * 1.6.3    2019-11-30 [1] CRAN (R 4.0.3)                     
+    ##  stringi            1.5.3    2020-09-09 [1] CRAN (R 4.0.2)                     
+    ##  stringr          * 1.4.0    2019-02-10 [1] CRAN (R 4.0.2)                     
+    ##  svgViewR           1.4.1    2020-10-03 [1] CRAN (R 4.0.3)                     
+    ##  testthat           3.0.2    2021-02-14 [1] CRAN (R 4.0.4)                     
+    ##  tibble           * 3.0.6    2021-01-29 [1] CRAN (R 4.0.3)                     
+    ##  tidyr            * 1.1.2    2020-08-27 [1] CRAN (R 4.0.2)                     
+    ##  tidyselect         1.1.0    2020-05-11 [1] CRAN (R 4.0.2)                     
+    ##  tidyverse        * 1.3.0    2019-11-21 [1] CRAN (R 4.0.2)                     
+    ##  tiff               0.1-6    2020-11-17 [1] CRAN (R 4.0.3)                     
+    ##  usethis            2.0.1    2021-02-10 [1] CRAN (R 4.0.3)                     
+    ##  vctrs              0.3.6    2020-12-17 [1] CRAN (R 4.0.3)                     
+    ##  webshot            0.5.2    2019-11-22 [1] CRAN (R 4.0.2)                     
+    ##  wesanderson      * 0.3.6    2018-04-20 [1] CRAN (R 4.0.2)                     
+    ##  withr              2.4.1    2021-01-26 [1] CRAN (R 4.0.3)                     
+    ##  xfun               0.21     2021-02-10 [1] CRAN (R 4.0.3)                     
+    ##  xml2               1.3.2    2020-04-23 [1] CRAN (R 4.0.2)                     
+    ##  xtable             1.8-4    2019-04-21 [1] CRAN (R 4.0.2)                     
+    ##  yaml               2.2.1    2020-02-01 [1] CRAN (R 4.0.0)                     
+    ## 
+    ## [1] C:/Users/seldenjrz/Documents/R/win-library/4.0
+    ## [2] C:/Program Files/R/R-4.0.4/library
+
+Current Git commit details are:
+
+``` r
+# where can I find this commit? 
+if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
+```
+
+    ## Local:    main D:/github/fta3dgm
+    ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
+    ## Head:     [109ce42] 2021-02-02: <clean>
 
 ## References cited
 

@@ -47,7 +47,7 @@ library(wesanderson)
 Landmark data were aligned to a global coordinate system (Kendall 1981,
 1984; Slice 2001), achieved through generalised Procrustes
 superimposition (Rohlf and Slice 1990) performed in R 4.0.4 (R Core
-Development Team, 2020) using the `geomorph` library v. 3.3.2 (Adams et
+Development Team, 2021) using the `geomorph` library v. 3.3.2 (Adams et
 al. 2017; Adams and Otárola-Castillo 2013). Procrustes superimposition
 translates, scales, and rotates the coordinate data to allow for
 comparisons among objects (Gower 1975; Rohlf and Slice 1990). The
@@ -313,7 +313,7 @@ plotRefToTarget(mean$asterisk,
 
 ### Colophon
 
-This version of the analysis was generated on 2021-02-19 02:49:16 using
+This version of the analysis was generated on 2021-02-19 03:02:09 using
 the following computational environment and dependencies:
 
 ``` r
@@ -450,7 +450,7 @@ if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r:
 
     ## Local:    main D:/github/fta3dgm
     ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
-    ## Head:     [109ce42] 2021-02-02: <clean>
+    ## Head:     [a92802e] 2021-02-19: <init colophon>
 
 ## References cited
 
@@ -516,7 +516,7 @@ https://doi.org/<http://dx.doi.org/10.4404/hystrix-24.1-7691>.
 
 <div id="ref-R" class="csl-entry">
 
-R Core Development Team,. 2020. *R: A Language and Environment for
+R Core Development Team,. 2021. *R: A Language and Environment for
 Statistical Computing*. Vienna, Austria: R Foundation for Statistical
 Computing. <http://www.R-project.org/>.
 

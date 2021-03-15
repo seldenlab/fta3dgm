@@ -1,6 +1,6 @@
-Supplementary materials for paper: French trade axes from the La Belle
-shipwreck demonstrate significant morphological differences by makers’
-mark
+Supplementary materials for paper: Inferences to individual makers?
+French trade axe morphology and makers’ marks from the La Belle
+shipwreck
 ================
 Robert Z. Selden, Jr.
 15 March, 2021
@@ -275,7 +275,7 @@ plotRefToTarget(mean$asterisk,
 
 ### Colophon
 
-This version of the analysis was generated on 2021-03-15 03:34:21 using
+This version of the analysis was generated on 2021-03-15 04:22:56 using
 the following computational environment and dependencies:
 
 ``` r
@@ -414,7 +414,7 @@ if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r:
 
     ## Local:    main D:/github/fta3dgm
     ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
-    ## Head:     [4aac09a] 2021-02-19: <edit refs>
+    ## Head:     [e51d13f] 2021-03-15: <edit supp>
 
 ## References cited
 

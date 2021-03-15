@@ -1,5 +1,5 @@
 ---
-title: "Supplementary materials for paper: French trade axes from the La Belle shipwreck demonstrate significant morphological differences by makers' mark"
+title: "Supplementary materials for paper: Inferences to individual makers? French trade axe morphology and makers' marks from the La Belle shipwreck"
 author: "Robert Z. Selden, Jr."
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: github_document

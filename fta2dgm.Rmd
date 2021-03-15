@@ -121,18 +121,6 @@ fit.shape.mark <- procD.lm(shape ~ mark,
 anova(fit.shape.mark)
 ```
 
-### Morphological disparity
-
-```{r m-disparity.h4, out.width = "100%", dpi = 300, echo=TRUE, warning=FALSE}
-# does one of the groups display greater shape variation among individuals 
-# relative to the other group?
-morphol.disparity(shape ~ mark, 
-                  groups = qdata$mark, 
-                  data = gdf, 
-                  print.progress = FALSE, 
-                  iter = 9999)
-```
-
 ### Mean shapes
 
 ```{r def.mod.2, out.width = "100%", dpi = 300, echo=TRUE, warning=FALSE}

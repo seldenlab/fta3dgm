@@ -3,11 +3,12 @@ French trade axe morphology and makers’ marks from the La Belle
 shipwreck
 ================
 Robert Z. Selden, Jr.
-15 March, 2021
+31 March, 2021
 
 ## Load packages
 
 ``` r
+#devtools::install_github("mlcollyer/RRPP")
 #devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
 library(here)
 ```
@@ -133,7 +134,7 @@ summary(pca)
     ## Centering by OLS mean
     ## Orthogonal projection of OLS residuals
     ## Number of observations: 10 
-    ## Number of vectors 10 
+    ## Number of vectors 9 
     ## 
     ## Importance of Components:
     ##                              Comp1        Comp2        Comp3       Comp4
@@ -144,10 +145,10 @@ summary(pca)
     ## Eigenvalues            0.0001221042 6.503468e-05 3.613184e-05 1.866069e-05
     ## Proportion of Variance 0.0495780200 2.640605e-02 1.467062e-02 7.576807e-03
     ## Cumulative Proportion  0.9466994558 9.731055e-01 9.877761e-01 9.953529e-01
-    ##                               Comp9       Comp10
-    ## Eigenvalues            1.144512e-05 1.828701e-33
-    ## Proportion of Variance 4.647064e-03 7.425079e-31
-    ## Cumulative Proportion  1.000000e+00 1.000000e+00
+    ##                               Comp9
+    ## Eigenvalues            1.144512e-05
+    ## Proportion of Variance 4.647064e-03
+    ## Cumulative Proportion  1.000000e+00
 
 ``` r
 # set plot parameters to plot by mark
@@ -275,7 +276,7 @@ plotRefToTarget(mean$asterisk,
 
 ### Colophon
 
-This version of the analysis was generated on 2021-03-15 04:22:56 using
+This version of the analysis was generated on 2021-03-31 10:07:11 using
 the following computational environment and dependencies:
 
 ``` r
@@ -293,7 +294,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  collate  English_United States.1252  
     ##  ctype    English_United States.1252  
     ##  tz       America/Chicago             
-    ##  date     2021-03-15                  
+    ##  date     2021-03-31                  
     ## 
     ## - Packages -------------------------------------------------------------------
     ##  package          * version  date       lib source                             
@@ -304,7 +305,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  brew               1.0-6    2011-04-13 [1] CRAN (R 4.0.0)                     
     ##  broom              0.7.5    2021-02-19 [1] CRAN (R 4.0.4)                     
     ##  cachem             1.0.4    2021-02-13 [1] CRAN (R 4.0.4)                     
-    ##  callr              3.5.1    2020-10-13 [1] CRAN (R 4.0.3)                     
+    ##  callr              3.6.0    2021-03-28 [1] CRAN (R 4.0.4)                     
     ##  cellranger         1.1.0    2016-07-27 [1] CRAN (R 4.0.2)                     
     ##  cli                2.3.1    2021-02-23 [1] CRAN (R 4.0.4)                     
     ##  colorspace         2.0-0    2020-11-11 [1] CRAN (R 4.0.3)                     
@@ -324,7 +325,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  forcats          * 0.5.1    2021-01-27 [1] CRAN (R 4.0.3)                     
     ##  fs                 1.5.0    2020-07-31 [1] CRAN (R 4.0.2)                     
     ##  generics           0.1.0    2020-10-31 [1] CRAN (R 4.0.3)                     
-    ##  geomorph         * 3.3.2    2021-01-23 [1] Github (geomorphR/geomorph@788ab5b)
+    ##  geomorph         * 3.3.2    2021-03-22 [1] Github (geomorphR/geomorph@8dec1b0)
     ##  ggplot2          * 3.3.3    2020-12-30 [1] CRAN (R 4.0.3)                     
     ##  glue               1.4.2    2020-08-27 [1] CRAN (R 4.0.2)                     
     ##  gtable             0.3.0    2019-03-25 [1] CRAN (R 4.0.2)                     
@@ -347,6 +348,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  magrittr           2.0.1    2020-11-17 [1] CRAN (R 4.0.3)                     
     ##  manipulateWidget   0.10.1   2020-02-24 [1] CRAN (R 4.0.2)                     
     ##  MASS               7.3-53.1 2021-02-12 [1] CRAN (R 4.0.4)                     
+    ##  Matrix             1.3-2    2021-01-06 [1] CRAN (R 4.0.3)                     
     ##  memoise            2.0.0    2021-01-26 [1] CRAN (R 4.0.3)                     
     ##  mime               0.10     2021-02-13 [1] CRAN (R 4.0.4)                     
     ##  miniUI             0.1.1.1  2018-05-18 [1] CRAN (R 4.0.2)                     
@@ -359,7 +361,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  pkgload            1.2.0    2021-02-23 [1] CRAN (R 4.0.4)                     
     ##  png                0.1-7    2013-12-03 [1] CRAN (R 4.0.0)                     
     ##  prettyunits        1.1.1    2020-01-24 [1] CRAN (R 4.0.2)                     
-    ##  processx           3.4.5    2020-11-30 [1] CRAN (R 4.0.3)                     
+    ##  processx           3.5.0    2021-03-23 [1] CRAN (R 4.0.4)                     
     ##  promises           1.2.0.1  2021-02-11 [1] CRAN (R 4.0.3)                     
     ##  ps                 1.6.0    2021-02-28 [1] CRAN (R 4.0.4)                     
     ##  purrr            * 0.3.4    2020-04-17 [1] CRAN (R 4.0.2)                     
@@ -375,7 +377,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  rmarkdown          2.7      2021-02-19 [1] CRAN (R 4.0.4)                     
     ##  Rook               1.1-1    2014-10-20 [1] CRAN (R 4.0.3)                     
     ##  rprojroot          2.0.2    2020-11-15 [1] CRAN (R 4.0.3)                     
-    ##  RRPP             * 0.6.2    2021-01-11 [1] CRAN (R 4.0.3)                     
+    ##  RRPP             * 1.0.0    2021-03-30 [1] CRAN (R 4.0.4)                     
     ##  rstudioapi         0.13     2020-11-12 [1] CRAN (R 4.0.3)                     
     ##  rvest              1.0.0    2021-03-09 [1] CRAN (R 4.0.4)                     
     ##  scales             1.1.1    2020-05-11 [1] CRAN (R 4.0.2)                     
@@ -393,7 +395,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  tiff               0.1-7    2021-03-02 [1] CRAN (R 4.0.4)                     
     ##  usethis            2.0.1    2021-02-10 [1] CRAN (R 4.0.3)                     
     ##  utf8               1.2.1    2021-03-12 [1] CRAN (R 4.0.4)                     
-    ##  vctrs              0.3.6    2020-12-17 [1] CRAN (R 4.0.3)                     
+    ##  vctrs              0.3.7    2021-03-29 [1] CRAN (R 4.0.4)                     
     ##  webshot            0.5.2    2019-11-22 [1] CRAN (R 4.0.2)                     
     ##  wesanderson      * 0.3.6    2018-04-20 [1] CRAN (R 4.0.2)                     
     ##  withr              2.4.1    2021-01-26 [1] CRAN (R 4.0.3)                     
@@ -414,7 +416,7 @@ if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r:
 
     ## Local:    main D:/github/fta3dgm
     ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
-    ## Head:     [e51d13f] 2021-03-15: <edit supp>
+    ## Head:     [7854138] 2021-03-15: <edit supp>
 
 ## References cited
 

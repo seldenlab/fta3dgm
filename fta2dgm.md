@@ -173,13 +173,6 @@ shapeHulls(pc.plot1,
 
 <img src="fta2dgm_files/figure-gfm/pca-1.png" width="100%" />
 
-``` r
-# print pca with warp grids at max/min X and max/min Y
-knitr::include_graphics('./figures/pca.warp.jpg')
-```
-
-<img src="./figures/pca.warp.jpg" width="100%" />
-
 ### Minima/maxima of PC1/2
 
 ``` r
@@ -216,10 +209,20 @@ plotRefToTarget(pca$shapes$shapes.comp2$max,
 
 <img src="fta2dgm_files/figure-gfm/min.max-4.png" width="100%" />
 
+## Composite PCA with warp grids
+
+``` r
+# print pca with warp grids at max/min X and max/min Y
+knitr::include_graphics('./figures/pca.warp.jpg')
+```
+
+<img src="./figures/pca.warp.jpg" width="100%" />
+
 ## Test hypothesis
 
 *Hypothesis: There are morphological differences between French trade
-axes that bear an asterisk or DG makers’ marks.*
+axes from the La Belle shipwreck that bear an asterisk or DG makers’
+marks.*
 
 ``` r
 # size as a function of mark ----
@@ -317,7 +320,7 @@ plotRefToTarget(mean$asterisk,
 
 ### Colophon
 
-This version of the analysis was generated on 2021-04-28 16:49:14 using
+This version of the analysis was generated on 2021-04-28 16:54:37 using
 the following computational environment and dependencies:
 
 ``` r
@@ -457,7 +460,7 @@ if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r:
 
     ## Local:    main D:/github/fta3dgm
     ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
-    ## Head:     [800c5b8] 2021-04-28: <revo analysis>
+    ## Head:     [ebe2c61] 2021-04-28: <init warp.grids>
 
 ## References cited
 

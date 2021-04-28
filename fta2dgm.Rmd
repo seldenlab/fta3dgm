@@ -93,9 +93,6 @@ pc.plot1 <- plot(pca,
 shapeHulls(pc.plot1, 
            groups = mark,
            group.cols = col.hull)
-
-# print pca with warp grids at max/min X and max/min Y
-knitr::include_graphics('./figures/pca.warp.jpg')
 ```
 
 ### Minima/maxima of PC1/2
@@ -120,9 +117,16 @@ plotRefToTarget(pca$shapes$shapes.comp2$max,
                 mean.shape)
 ```
 
+## Composite PCA with warp grids
+
+```{r compositePCA, echo=TRUE, out.width = "100%", dpi = 300, warning=FALSE}
+# print pca with warp grids at max/min X and max/min Y
+knitr::include_graphics('./figures/pca.warp.jpg')
+```
+
 ## Test hypothesis
 
-_Hypothesis: There are morphological differences between French trade axes that bear an asterisk or DG makers' marks._
+_Hypothesis: There are morphological differences between French trade axes from the La Belle shipwreck that bear an asterisk or DG makers' marks._
 
 ```{r def.mod.1, out.width = "100%", dpi = 300, echo=TRUE, warning=FALSE}
 # size as a function of mark ----

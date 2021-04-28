@@ -180,6 +180,42 @@ knitr::include_graphics('./figures/pca.warp.jpg')
 
 <img src="./figures/pca.warp.jpg" width="100%" />
 
+### Minima/maxima of PC1/2
+
+``` r
+# plot x/y maxima/minima
+## x - minima
+mean.shape <- mshape(Y.gpa$coords)
+plotRefToTarget(pca$shapes$shapes.comp1$min, 
+                mean.shape)
+```
+
+<img src="fta2dgm_files/figure-gfm/min.max-1.png" width="100%" />
+
+``` r
+## x - maxima
+plotRefToTarget(pca$shapes$shapes.comp1$max, 
+                mean.shape)
+```
+
+<img src="fta2dgm_files/figure-gfm/min.max-2.png" width="100%" />
+
+``` r
+## y - minima
+plotRefToTarget(pca$shapes$shapes.comp2$min, 
+                mean.shape)
+```
+
+<img src="fta2dgm_files/figure-gfm/min.max-3.png" width="100%" />
+
+``` r
+## y - maxima
+plotRefToTarget(pca$shapes$shapes.comp2$max, 
+                mean.shape)
+```
+
+<img src="fta2dgm_files/figure-gfm/min.max-4.png" width="100%" />
+
 ## Test hypothesis
 
 *Hypothesis: There are morphological differences between French trade
@@ -281,7 +317,7 @@ plotRefToTarget(mean$asterisk,
 
 ### Colophon
 
-This version of the analysis was generated on 2021-04-28 16:44:18 using
+This version of the analysis was generated on 2021-04-28 16:49:14 using
 the following computational environment and dependencies:
 
 ``` r
@@ -421,7 +457,7 @@ if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r:
 
     ## Local:    main D:/github/fta3dgm
     ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
-    ## Head:     [f421381] 2021-03-31: <edit supp>
+    ## Head:     [800c5b8] 2021-04-28: <revo analysis>
 
 ## References cited
 

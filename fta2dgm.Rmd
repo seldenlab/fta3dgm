@@ -98,6 +98,28 @@ shapeHulls(pc.plot1,
 knitr::include_graphics('./figures/pca.warp.jpg')
 ```
 
+### Minima/maxima of PC1/2
+
+```{r min.max, echo=TRUE, out.width = "100%", dpi = 300, warning=FALSE}
+# plot x/y maxima/minima
+## x - minima
+mean.shape <- mshape(Y.gpa$coords)
+plotRefToTarget(pca$shapes$shapes.comp1$min, 
+                mean.shape)
+
+## x - maxima
+plotRefToTarget(pca$shapes$shapes.comp1$max, 
+                mean.shape)
+
+## y - minima
+plotRefToTarget(pca$shapes$shapes.comp2$min, 
+                mean.shape)
+
+## y - maxima
+plotRefToTarget(pca$shapes$shapes.comp2$max, 
+                mean.shape)
+```
+
 ## Test hypothesis
 
 _Hypothesis: There are morphological differences between French trade axes that bear an asterisk or DG makers' marks._

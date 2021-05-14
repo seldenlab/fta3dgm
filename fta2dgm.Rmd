@@ -52,7 +52,7 @@ qdata$csz <- Y.gpa$Csize
 knitr::kable(qdata, align = "lccc", caption = "Attributes included in qdata.")
 ```
 
-### Variation in French trade axe size by mark
+### Variation in French trade axe centroid size by mark
 
 ```{r box.attr, out.width = "100%", dpi = 300, echo=TRUE, warning=FALSE}
 # attributes for boxplots ----
@@ -126,7 +126,7 @@ knitr::include_graphics('./figures/pca.warp.jpg')
 
 ## Test hypothesis
 
-_Hypothesis: There are morphological differences between French trade axes from the La Belle shipwreck that bear an asterisk or DG makers' marks._
+_Hypothesis: There are morphological differences between French trade axes from the La Belle shipwreck that bear an **asterisk** or **DG** makers' marks._
 
 ```{r def.mod.1, out.width = "100%", dpi = 300, echo=TRUE, warning=FALSE}
 # size as a function of mark ----
@@ -146,6 +146,39 @@ fit.shape.mark <- procD.lm(shape ~ mark,
 
 ## differences in shape by mark? ----
 anova(fit.shape.mark)
+```
+
+## Morphological integration
+
+Are the blade and butt of the axes morphologically integrated?
+
+```{r integ, echo=TRUE, out.width = "100%", dpi = 300, warning=FALSE}
+land.gps <- c("A","A","B","B","A","A","A","A","A","A","B","B","B","B","B","B","B","B",
+              "B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","A","A",
+              "A","A","A","A","A")
+  
+it <- integration.test(Y.gpa$coords,
+                       partition.gp = land.gps,
+                       print.progress = FALSE,
+                       iter = 9999)
+summary(it)
+
+## integration plot
+plot(it)
+```
+
+## Modularity test
+
+```{r mod, echo=TRUE, out.width = "100%", dpi = 300, warning=FALSE}
+mod <- modularity.test(Y.gpa$coords,
+                       partition.gp = land.gps,
+                       iter = 9999,
+                       print.progress = FALSE)
+
+summary(mod)
+
+## modularity plot
+plot(mod)
 ```
 
 ### Mean shapes

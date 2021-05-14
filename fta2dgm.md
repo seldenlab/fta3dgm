@@ -3,7 +3,7 @@ French trade axe morphology and makers’ marks from the La Belle
 shipwreck
 ================
 Robert Z. Selden, Jr.
-28 April, 2021
+14 May, 2021
 
 ## Load packages
 
@@ -13,7 +13,7 @@ Robert Z. Selden, Jr.
 library(here)
 ```
 
-    ## here() starts at D:/github/fta3dgm
+    ## here() starts at E:/github/fta3dgm
 
 ``` r
 library(StereoMorph)
@@ -33,7 +33,7 @@ library(tidyverse)
     ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
 
     ## v ggplot2 3.3.3     v purrr   0.3.4
-    ## v tibble  3.1.1     v dplyr   1.0.5
+    ## v tibble  3.1.1     v dplyr   1.0.6
     ## v tidyr   1.1.3     v stringr 1.4.0
     ## v readr   1.4.0     v forcats 0.5.1
 
@@ -98,7 +98,7 @@ knitr::kable(qdata, align = "lccc", caption = "Attributes included in qdata.")
 
 Attributes included in qdata.
 
-### Variation in French trade axe size by mark
+### Variation in French trade axe centroid size by mark
 
 ``` r
 # attributes for boxplots ----
@@ -221,8 +221,8 @@ knitr::include_graphics('./figures/pca.warp.jpg')
 ## Test hypothesis
 
 *Hypothesis: There are morphological differences between French trade
-axes from the La Belle shipwreck that bear an asterisk or DG makers’
-marks.*
+axes from the La Belle shipwreck that bear an **asterisk** or **DG**
+makers’ marks.*
 
 ``` r
 # size as a function of mark ----
@@ -280,6 +280,77 @@ anova(fit.shape.mark)
     ## 
     ## Call: procD.lm(f1 = shape ~ mark, iter = 9999, data = gdf, print.progress = FALSE)
 
+## Morphological integration
+
+Are the blade and butt of the axes morphologically integrated?
+
+``` r
+land.gps <- c("A","A","B","B","A","A","A","A","A","A","B","B","B","B","B","B","B","B",
+              "B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","B","A","A",
+              "A","A","A","A","A")
+  
+it <- integration.test(Y.gpa$coords,
+                       partition.gp = land.gps,
+                       print.progress = FALSE,
+                       iter = 9999)
+summary(it)
+```
+
+    ## 
+    ## Call:
+    ## integration.test(A = Y.gpa$coords, partition.gp = land.gps, iter = 9999,  
+    ##     print.progress = FALSE) 
+    ## 
+    ## 
+    ## 
+    ## r-PLS: 0.9397
+    ## 
+    ## Effect Size (Z): 2.50736
+    ## 
+    ## P-value: 0.002
+    ## 
+    ## Based on 10000 random permutations
+
+``` r
+## integration plot
+plot(it)
+```
+
+<img src="fta2dgm_files/figure-gfm/integ-1.png" width="100%" />
+
+## Modularity test
+
+``` r
+mod <- modularity.test(Y.gpa$coords,
+                       partition.gp = land.gps,
+                       iter = 9999,
+                       print.progress = FALSE)
+
+summary(mod)
+```
+
+    ## 
+    ## Call:
+    ## modularity.test(A = Y.gpa$coords, partition.gp = land.gps, iter = 9999,  
+    ##     print.progress = FALSE) 
+    ## 
+    ## 
+    ## 
+    ## CR: 0.90151
+    ## 
+    ## P-value: 5e-04
+    ## 
+    ## Effect Size: -4.31951
+    ## 
+    ## Based on 10000 random permutations
+
+``` r
+## modularity plot
+plot(mod)
+```
+
+<img src="fta2dgm_files/figure-gfm/mod-1.png" width="100%" />
+
 ### Mean shapes
 
 ``` r
@@ -320,7 +391,7 @@ plotRefToTarget(mean$asterisk,
 
 ### Colophon
 
-This version of the analysis was generated on 2021-04-28 16:54:37 using
+This version of the analysis was generated on 2021-05-14 03:33:24 using
 the following computational environment and dependencies:
 
 ``` r
@@ -338,115 +409,221 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  collate  English_United States.1252  
     ##  ctype    English_United States.1252  
     ##  tz       America/Chicago             
-    ##  date     2021-04-28                  
+    ##  date     2021-05-14                  
     ## 
     ## - Packages -------------------------------------------------------------------
-    ##  package          * version  date       lib source                             
-    ##  ape                5.5      2021-04-25 [1] CRAN (R 4.0.5)                     
-    ##  assertthat         0.2.1    2019-03-21 [1] CRAN (R 4.0.2)                     
-    ##  backports          1.2.1    2020-12-09 [1] CRAN (R 4.0.3)                     
-    ##  bezier             1.1.2    2018-12-14 [1] CRAN (R 4.0.3)                     
-    ##  brew               1.0-6    2011-04-13 [1] CRAN (R 4.0.0)                     
-    ##  broom              0.7.6    2021-04-05 [1] CRAN (R 4.0.4)                     
-    ##  cachem             1.0.4    2021-02-13 [1] CRAN (R 4.0.4)                     
-    ##  callr              3.7.0    2021-04-20 [1] CRAN (R 4.0.4)                     
-    ##  cellranger         1.1.0    2016-07-27 [1] CRAN (R 4.0.2)                     
-    ##  cli                2.5.0    2021-04-26 [1] CRAN (R 4.0.5)                     
-    ##  colorspace         2.0-0    2020-11-11 [1] CRAN (R 4.0.3)                     
-    ##  crayon             1.4.1    2021-02-08 [1] CRAN (R 4.0.3)                     
-    ##  crosstalk          1.1.1    2021-01-12 [1] CRAN (R 4.0.3)                     
-    ##  DBI                1.1.1    2021-01-15 [1] CRAN (R 4.0.3)                     
-    ##  dbplyr             2.1.1    2021-04-06 [1] CRAN (R 4.0.4)                     
-    ##  desc               1.3.0    2021-03-05 [1] CRAN (R 4.0.4)                     
-    ##  devtools           2.4.0    2021-04-07 [1] CRAN (R 4.0.5)                     
-    ##  digest             0.6.27   2020-10-24 [1] CRAN (R 4.0.3)                     
-    ##  dplyr            * 1.0.5    2021-03-05 [1] CRAN (R 4.0.4)                     
-    ##  ellipsis           0.3.1    2020-05-15 [1] CRAN (R 4.0.2)                     
-    ##  evaluate           0.14     2019-05-28 [1] CRAN (R 4.0.2)                     
-    ##  fansi              0.4.2    2021-01-15 [1] CRAN (R 4.0.3)                     
-    ##  farver             2.1.0    2021-02-28 [1] CRAN (R 4.0.4)                     
-    ##  fastmap            1.1.0    2021-01-25 [1] CRAN (R 4.0.3)                     
-    ##  forcats          * 0.5.1    2021-01-27 [1] CRAN (R 4.0.3)                     
-    ##  fs                 1.5.0    2020-07-31 [1] CRAN (R 4.0.2)                     
-    ##  generics           0.1.0    2020-10-31 [1] CRAN (R 4.0.3)                     
-    ##  geomorph         * 4.0.0    2021-04-28 [1] Github (geomorphR/geomorph@8295a6a)
-    ##  ggplot2          * 3.3.3    2020-12-30 [1] CRAN (R 4.0.3)                     
-    ##  glue               1.4.2    2020-08-27 [1] CRAN (R 4.0.2)                     
-    ##  gtable             0.3.0    2019-03-25 [1] CRAN (R 4.0.2)                     
-    ##  haven              2.4.1    2021-04-23 [1] CRAN (R 4.0.5)                     
-    ##  here             * 1.0.1    2020-12-13 [1] CRAN (R 4.0.3)                     
-    ##  highr              0.9      2021-04-16 [1] CRAN (R 4.0.4)                     
-    ##  hms                1.0.0    2021-01-13 [1] CRAN (R 4.0.3)                     
-    ##  htmltools          0.5.1.1  2021-01-22 [1] CRAN (R 4.0.3)                     
-    ##  htmlwidgets        1.5.3    2020-12-10 [1] CRAN (R 4.0.3)                     
-    ##  httpuv             1.6.0    2021-04-23 [1] CRAN (R 4.0.5)                     
-    ##  httr               1.4.2    2020-07-20 [1] CRAN (R 4.0.2)                     
-    ##  jpeg               0.1-8.1  2019-10-24 [1] CRAN (R 4.0.0)                     
-    ##  jsonlite           1.7.2    2020-12-09 [1] CRAN (R 4.0.3)                     
-    ##  knitr              1.33     2021-04-24 [1] CRAN (R 4.0.5)                     
-    ##  labeling           0.4.2    2020-10-20 [1] CRAN (R 4.0.3)                     
-    ##  later              1.2.0    2021-04-23 [1] CRAN (R 4.0.5)                     
-    ##  lattice            0.20-41  2020-04-02 [2] CRAN (R 4.0.5)                     
-    ##  lifecycle          1.0.0    2021-02-15 [1] CRAN (R 4.0.4)                     
-    ##  lubridate          1.7.10   2021-02-26 [1] CRAN (R 4.0.4)                     
-    ##  magrittr           2.0.1    2020-11-17 [1] CRAN (R 4.0.3)                     
-    ##  manipulateWidget   0.10.1   2020-02-24 [1] CRAN (R 4.0.2)                     
-    ##  MASS               7.3-53.1 2021-02-12 [1] CRAN (R 4.0.4)                     
-    ##  Matrix           * 1.3-2    2021-01-06 [1] CRAN (R 4.0.3)                     
-    ##  memoise            2.0.0    2021-01-26 [1] CRAN (R 4.0.3)                     
-    ##  mime               0.10     2021-02-13 [1] CRAN (R 4.0.4)                     
-    ##  miniUI             0.1.1.1  2018-05-18 [1] CRAN (R 4.0.2)                     
-    ##  modelr             0.1.8    2020-05-19 [1] CRAN (R 4.0.2)                     
-    ##  munsell            0.5.0    2018-06-12 [1] CRAN (R 4.0.2)                     
-    ##  nlme               3.1-152  2021-02-04 [2] CRAN (R 4.0.5)                     
-    ##  pillar             1.6.0    2021-04-13 [1] CRAN (R 4.0.5)                     
-    ##  pkgbuild           1.2.0    2020-12-15 [1] CRAN (R 4.0.3)                     
-    ##  pkgconfig          2.0.3    2019-09-22 [1] CRAN (R 4.0.2)                     
-    ##  pkgload            1.2.1    2021-04-06 [1] CRAN (R 4.0.5)                     
-    ##  png                0.1-7    2013-12-03 [1] CRAN (R 4.0.0)                     
-    ##  prettyunits        1.1.1    2020-01-24 [1] CRAN (R 4.0.2)                     
-    ##  processx           3.5.1    2021-04-04 [1] CRAN (R 4.0.5)                     
-    ##  promises           1.2.0.1  2021-02-11 [1] CRAN (R 4.0.3)                     
-    ##  ps                 1.6.0    2021-02-28 [1] CRAN (R 4.0.4)                     
-    ##  purrr            * 0.3.4    2020-04-17 [1] CRAN (R 4.0.2)                     
-    ##  R6                 2.5.0    2020-10-28 [1] CRAN (R 4.0.3)                     
-    ##  Rcpp               1.0.6    2021-01-15 [1] CRAN (R 4.0.3)                     
-    ##  readr            * 1.4.0    2020-10-05 [1] CRAN (R 4.0.3)                     
-    ##  readxl             1.3.1    2019-03-13 [1] CRAN (R 4.0.2)                     
-    ##  remotes            2.3.0    2021-04-01 [1] CRAN (R 4.0.5)                     
-    ##  reprex             2.0.0    2021-04-02 [1] CRAN (R 4.0.5)                     
-    ##  rgl              * 0.106.8  2021-04-23 [1] CRAN (R 4.0.5)                     
-    ##  rjson              0.2.20   2018-06-08 [1] CRAN (R 4.0.0)                     
-    ##  rlang              0.4.10   2020-12-30 [1] CRAN (R 4.0.3)                     
-    ##  rmarkdown          2.7      2021-02-19 [1] CRAN (R 4.0.4)                     
-    ##  Rook               1.1-1    2014-10-20 [1] CRAN (R 4.0.3)                     
-    ##  rprojroot          2.0.2    2020-11-15 [1] CRAN (R 4.0.3)                     
-    ##  RRPP             * 1.0.0    2021-03-30 [1] CRAN (R 4.0.4)                     
-    ##  rstudioapi         0.13     2020-11-12 [1] CRAN (R 4.0.3)                     
-    ##  rvest              1.0.0    2021-03-09 [1] CRAN (R 4.0.4)                     
-    ##  scales             1.1.1    2020-05-11 [1] CRAN (R 4.0.2)                     
-    ##  sessioninfo        1.1.1    2018-11-05 [1] CRAN (R 4.0.2)                     
-    ##  shiny              1.6.0    2021-01-25 [1] CRAN (R 4.0.3)                     
-    ##  StereoMorph      * 1.6.3    2019-11-30 [1] CRAN (R 4.0.3)                     
-    ##  stringi            1.5.3    2020-09-09 [1] CRAN (R 4.0.2)                     
-    ##  stringr          * 1.4.0    2019-02-10 [1] CRAN (R 4.0.2)                     
-    ##  svgViewR           1.4.1    2020-10-03 [1] CRAN (R 4.0.3)                     
-    ##  testthat           3.0.2    2021-02-14 [1] CRAN (R 4.0.4)                     
-    ##  tibble           * 3.1.1    2021-04-18 [1] CRAN (R 4.0.4)                     
-    ##  tidyr            * 1.1.3    2021-03-03 [1] CRAN (R 4.0.4)                     
-    ##  tidyselect         1.1.0    2020-05-11 [1] CRAN (R 4.0.2)                     
-    ##  tidyverse        * 1.3.1    2021-04-15 [1] CRAN (R 4.0.4)                     
-    ##  tiff               0.1-8    2021-03-31 [1] CRAN (R 4.0.4)                     
-    ##  usethis            2.0.1    2021-02-10 [1] CRAN (R 4.0.3)                     
-    ##  utf8               1.2.1    2021-03-12 [1] CRAN (R 4.0.4)                     
-    ##  vctrs              0.3.7    2021-03-29 [1] CRAN (R 4.0.4)                     
-    ##  webshot            0.5.2    2019-11-22 [1] CRAN (R 4.0.2)                     
-    ##  wesanderson      * 0.3.6    2018-04-20 [1] CRAN (R 4.0.2)                     
-    ##  withr              2.4.2    2021-04-18 [1] CRAN (R 4.0.4)                     
-    ##  xfun               0.22     2021-03-11 [1] CRAN (R 4.0.4)                     
-    ##  xml2               1.3.2    2020-04-23 [1] CRAN (R 4.0.2)                     
-    ##  xtable             1.8-4    2019-04-21 [1] CRAN (R 4.0.2)                     
-    ##  yaml               2.2.1    2020-02-01 [1] CRAN (R 4.0.0)                     
+    ##  package          * version    date       lib
+    ##  ape                5.5        2021-04-25 [1]
+    ##  assertthat         0.2.1      2019-03-21 [1]
+    ##  backports          1.2.1      2020-12-09 [1]
+    ##  bezier             1.1.2      2018-12-14 [1]
+    ##  brew               1.0-6      2011-04-13 [1]
+    ##  broom              0.7.6      2021-04-05 [1]
+    ##  cachem             1.0.4      2021-02-13 [1]
+    ##  callr              3.7.0      2021-04-20 [1]
+    ##  cellranger         1.1.0      2016-07-27 [1]
+    ##  cli                2.5.0      2021-04-26 [1]
+    ##  colorspace         2.0-1      2021-05-04 [1]
+    ##  crayon             1.4.1      2021-02-08 [1]
+    ##  crosstalk          1.1.1      2021-01-12 [1]
+    ##  DBI                1.1.1      2021-01-15 [1]
+    ##  dbplyr             2.1.1      2021-04-06 [1]
+    ##  desc               1.3.0      2021-03-05 [1]
+    ##  devtools           2.4.1      2021-05-05 [1]
+    ##  digest             0.6.27     2020-10-24 [1]
+    ##  dplyr            * 1.0.6      2021-05-05 [1]
+    ##  ellipsis           0.3.2      2021-04-29 [1]
+    ##  evaluate           0.14       2019-05-28 [1]
+    ##  fansi              0.4.2      2021-01-15 [1]
+    ##  farver             2.1.0      2021-02-28 [1]
+    ##  fastmap            1.1.0      2021-01-25 [1]
+    ##  forcats          * 0.5.1      2021-01-27 [1]
+    ##  fs                 1.5.0      2020-07-31 [1]
+    ##  generics           0.1.0      2020-10-31 [1]
+    ##  geomorph         * 4.0.0      2021-04-15 [1]
+    ##  ggplot2          * 3.3.3      2020-12-30 [1]
+    ##  glue               1.4.2      2020-08-27 [1]
+    ##  gtable             0.3.0      2019-03-25 [1]
+    ##  haven              2.4.1      2021-04-23 [1]
+    ##  here             * 1.0.1      2020-12-13 [1]
+    ##  highr              0.9        2021-04-16 [1]
+    ##  hms                1.0.0      2021-01-13 [1]
+    ##  htmltools          0.5.1.1    2021-01-22 [1]
+    ##  htmlwidgets        1.5.3      2020-12-10 [1]
+    ##  httpuv             1.6.1      2021-05-07 [1]
+    ##  httr               1.4.2      2020-07-20 [1]
+    ##  jpeg               0.1-8.1    2019-10-24 [1]
+    ##  jsonlite           1.7.2      2020-12-09 [1]
+    ##  knitr              1.33       2021-04-24 [1]
+    ##  labeling           0.4.2      2020-10-20 [1]
+    ##  later              1.2.0      2021-04-23 [1]
+    ##  lattice            0.20-41    2020-04-02 [2]
+    ##  lifecycle          1.0.0      2021-02-15 [1]
+    ##  lubridate          1.7.10     2021-02-26 [1]
+    ##  magrittr           2.0.1      2020-11-17 [1]
+    ##  manipulateWidget   0.10.1     2020-02-24 [1]
+    ##  MASS               7.3-53.1   2021-02-12 [2]
+    ##  Matrix           * 1.3-2      2021-01-06 [2]
+    ##  memoise            2.0.0      2021-01-26 [1]
+    ##  mime               0.10       2021-02-13 [1]
+    ##  miniUI             0.1.1.1    2018-05-18 [1]
+    ##  modelr             0.1.8      2020-05-19 [1]
+    ##  munsell            0.5.0      2018-06-12 [1]
+    ##  nlme               3.1-152    2021-02-04 [2]
+    ##  pillar             1.6.0      2021-04-13 [1]
+    ##  pkgbuild           1.2.0      2020-12-15 [1]
+    ##  pkgconfig          2.0.3      2019-09-22 [1]
+    ##  pkgload            1.2.1      2021-04-06 [1]
+    ##  png                0.1-7      2013-12-03 [1]
+    ##  prettyunits        1.1.1      2020-01-24 [1]
+    ##  processx           3.5.2      2021-04-30 [1]
+    ##  promises           1.2.0.1    2021-02-11 [1]
+    ##  ps                 1.6.0      2021-02-28 [1]
+    ##  purrr            * 0.3.4      2020-04-17 [1]
+    ##  R6                 2.5.0      2020-10-28 [1]
+    ##  Rcpp               1.0.6      2021-01-15 [1]
+    ##  readr            * 1.4.0      2020-10-05 [1]
+    ##  readxl             1.3.1      2019-03-13 [1]
+    ##  remotes            2.3.0      2021-04-01 [1]
+    ##  reprex             2.0.0      2021-04-02 [1]
+    ##  rgl              * 0.106.8    2021-04-23 [1]
+    ##  rjson              0.2.20     2018-06-08 [1]
+    ##  rlang              0.4.11     2021-04-30 [1]
+    ##  rmarkdown          2.8        2021-05-07 [1]
+    ##  Rook               1.1-1      2014-10-20 [1]
+    ##  rprojroot          2.0.2      2020-11-15 [1]
+    ##  RRPP             * 1.0.0      2021-03-30 [1]
+    ##  rstudioapi         0.13       2020-11-12 [1]
+    ##  rvest              1.0.0      2021-03-09 [1]
+    ##  scales             1.1.1      2020-05-11 [1]
+    ##  sessioninfo        1.1.1      2018-11-05 [1]
+    ##  shiny              1.6.0      2021-01-25 [1]
+    ##  StereoMorph      * 1.6.3      2019-11-30 [1]
+    ##  stringi            1.6.1      2021-05-10 [1]
+    ##  stringr          * 1.4.0      2019-02-10 [1]
+    ##  svgViewR           1.4.1      2020-10-03 [1]
+    ##  testthat           3.0.2      2021-02-14 [1]
+    ##  tibble           * 3.1.1      2021-04-18 [1]
+    ##  tidyr            * 1.1.3      2021-03-03 [1]
+    ##  tidyselect         1.1.1      2021-04-30 [1]
+    ##  tidyverse        * 1.3.1      2021-04-15 [1]
+    ##  tiff               0.1-8      2021-03-31 [1]
+    ##  usethis            2.0.1      2021-02-10 [1]
+    ##  utf8               1.2.1      2021-03-12 [1]
+    ##  vctrs              0.3.8      2021-04-29 [1]
+    ##  webshot            0.5.2      2019-11-22 [1]
+    ##  wesanderson      * 0.3.6.9000 2020-10-21 [1]
+    ##  withr              2.4.2      2021-04-18 [1]
+    ##  xfun               0.22       2021-03-11 [1]
+    ##  xml2               1.3.2      2020-04-23 [1]
+    ##  xtable             1.8-4      2019-04-21 [1]
+    ##  yaml               2.2.1      2020-02-01 [1]
+    ##  source                              
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.0)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  Github (geomorphR/geomorph@946ee06) 
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.0)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.4)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.4)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.0)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.0)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.4)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.4)                      
+    ##  CRAN (R 4.0.4)                      
+    ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  Github (karthik/wesanderson@651c944)
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.5)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.2)                      
+    ##  CRAN (R 4.0.2)                      
     ## 
     ## [1] C:/Users/seldenjrz/Documents/R/win-library/4.0
     ## [2] C:/Program Files/R/R-4.0.5/library
@@ -458,9 +635,9 @@ Current Git commit details are:
 if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
 ```
 
-    ## Local:    main D:/github/fta3dgm
+    ## Local:    main E:/github/fta3dgm
     ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
-    ## Head:     [ebe2c61] 2021-04-28: <init warp.grids>
+    ## Head:     [8ef149e] 2021-04-28: <final draft>
 
 ## References cited
 

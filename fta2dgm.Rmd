@@ -12,9 +12,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Load packages
 
-```{r load.packages, echo = TRUE}
-#devtools::install_github("mlcollyer/RRPP")
-#devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
+```{r load.packages, echo = TRUE, warning=FALSE}
+# install
+devtools::install_github("mlcollyer/RRPP")
+devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
+
+# load
 library(here)
 library(StereoMorph)
 library(geomorph)

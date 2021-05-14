@@ -8,8 +8,34 @@ Robert Z. Selden, Jr.
 ## Load packages
 
 ``` r
-#devtools::install_github("mlcollyer/RRPP")
-#devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
+# install
+devtools::install_github("mlcollyer/RRPP")
+```
+
+    ## Downloading GitHub repo mlcollyer/RRPP@HEAD
+
+    ## 
+    ##          checking for file 'C:\Users\seldenjrz\AppData\Local\Temp\Rtmpm8r70w\remotes4ec03b953d\mlcollyer-RRPP-a803f28/DESCRIPTION' ...  v  checking for file 'C:\Users\seldenjrz\AppData\Local\Temp\Rtmpm8r70w\remotes4ec03b953d\mlcollyer-RRPP-a803f28/DESCRIPTION'
+    ##       -  preparing 'RRPP': (366ms)
+    ##    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
+    ##       -  checking for LF line-endings in source and make files and shell scripts
+    ##       -  checking for empty or unneeded directories
+    ##       -  building 'RRPP_1.0.0.tar.gz'
+    ##      
+    ## 
+
+    ## Installing package into 'C:/Users/seldenjrz/Documents/R/win-library/4.0'
+    ## (as 'lib' is unspecified)
+
+``` r
+devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
+```
+
+    ## Skipping install of 'geomorph' from a github remote, the SHA1 (b59fac7d) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
+
+``` r
+# load
 library(here)
 ```
 
@@ -391,7 +417,7 @@ plotRefToTarget(mean$asterisk,
 
 ### Colophon
 
-This version of the analysis was generated on 2021-05-14 03:33:24 using
+This version of the analysis was generated on 2021-05-14 03:43:12 using
 the following computational environment and dependencies:
 
 ``` r
@@ -426,6 +452,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  colorspace         2.0-1      2021-05-04 [1]
     ##  crayon             1.4.1      2021-02-08 [1]
     ##  crosstalk          1.1.1      2021-01-12 [1]
+    ##  curl               4.3.1      2021-04-30 [1]
     ##  DBI                1.1.1      2021-01-15 [1]
     ##  dbplyr             2.1.1      2021-04-06 [1]
     ##  desc               1.3.0      2021-03-05 [1]
@@ -440,7 +467,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  forcats          * 0.5.1      2021-01-27 [1]
     ##  fs                 1.5.0      2020-07-31 [1]
     ##  generics           0.1.0      2020-10-31 [1]
-    ##  geomorph         * 4.0.0      2021-04-15 [1]
+    ##  geomorph         * 4.0.0      2021-05-14 [1]
     ##  ggplot2          * 3.3.3      2020-12-30 [1]
     ##  glue               1.4.2      2020-08-27 [1]
     ##  gtable             0.3.0      2019-03-25 [1]
@@ -532,6 +559,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  CRAN (R 4.0.5)                      
     ##  CRAN (R 4.0.3)                      
     ##  CRAN (R 4.0.3)                      
+    ##  CRAN (R 4.0.5)                      
     ##  CRAN (R 4.0.3)                      
     ##  CRAN (R 4.0.5)                      
     ##  CRAN (R 4.0.5)                      
@@ -546,7 +574,7 @@ if ("devtools" %in% installed.packages()) devtools::session_info()
     ##  CRAN (R 4.0.3)                      
     ##  CRAN (R 4.0.2)                      
     ##  CRAN (R 4.0.3)                      
-    ##  Github (geomorphR/geomorph@946ee06) 
+    ##  Github (geomorphR/geomorph@b59fac7) 
     ##  CRAN (R 4.0.3)                      
     ##  CRAN (R 4.0.2)                      
     ##  CRAN (R 4.0.2)                      
@@ -637,7 +665,7 @@ if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r:
 
     ## Local:    main E:/github/fta3dgm
     ## Remote:   main @ origin (https://github.com/aksel-blaise/fta3dgm)
-    ## Head:     [8ef149e] 2021-04-28: <final draft>
+    ## Head:     [b2a0e68] 2021-05-14: <init integration + modularity>
 
 ## References cited
 

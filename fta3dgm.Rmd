@@ -1,5 +1,5 @@
 ---
-title: "Supplementary materials for paper: Inferences to individual makers? French trade axe morphology and makers' marks from the La Belle shipwreck"
+title: "Supplementary materials for paper: Inferences to blacksmith production? French trade axe morphology and makers' marks from the La Belle shipwreck"
 author: "Robert Z. Selden, Jr."
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: github_document
@@ -14,8 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r load.packages, echo = TRUE, warning=FALSE}
 # install
-devtools::install_github("mlcollyer/RRPP")
-devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
+#devtools::install_github("mlcollyer/RRPP")
+#devtools::install_github("geomorphR/geomorph", ref = "Stable", build_vignettes = TRUE)
 
 # load
 library(here)
